@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <script src="Gradient.js"></script>
+    <title>tinder for gifs</title>
+</head>
+
+<body class="h-screen w-screen bg-gradient-to-r from-rose-500 to-pink-500">
+    <div class="h-full w-screen z-10 absolute" id="main">
+        <div id="container" class="flex justify-center items-center h-full">
+            <div class="w-full max-w-sm flex items-center justify-center h-full flex-col">
+                <h1 class="text-6xl font-bold text-[#424242]">tinder</h1>
+                <div class="bg-white shadow-2xl rounded-2xl px-8 pt-6 pb-6 mb-4 h-2/3 mt-10">
+                    <div class="flex justify-evenly flex-col items-center h-full">
+                        <img id="gif" src="200w.gif" alt="gif"
+                            class="min-h-[200px] max-h-[350px] cursor-pointer rounded-2xl hover:-translate-y-1 duration-150 transition ease-in-out hover:shadow-md"
+                            onclick="openInfo()">
+
+
+                        <div class="w-full h-1/3 flex justify-around items-center py-16">
+                            <button onclick="dislike()"
+                                class="rounded-full shadow-lg h-32 w-32 text-8xl text-red-500 flex justify-center items-center outline-1 outline outline-slate-50 hover:-translate-y-1 duration-150 transition ease-in-out">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px"
+                                    height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100"
+                                    xml:space="preserve">
+                                    <path fill="currentColor" d="M84.707,68.752L65.951,49.998l18.75-18.752c0.777-0.777,0.777-2.036,0-2.813L71.566,15.295
+                                c-0.777-0.777-2.037-0.777-2.814,0L49.999,34.047l-18.75-18.752c-0.746-0.747-2.067-0.747-2.814,0L15.297,28.431
+                                c-0.373,0.373-0.583,0.88-0.583,1.407c0,0.527,0.21,1.034,0.583,1.407L34.05,49.998L15.294,68.753
+                                c-0.373,0.374-0.583,0.88-0.583,1.407c0,0.528,0.21,1.035,0.583,1.407l13.136,13.137c0.373,0.373,0.881,0.583,1.41,0.583
+                                c0.525,0,1.031-0.21,1.404-0.583l18.755-18.755l18.756,18.754c0.389,0.388,0.896,0.583,1.407,0.583c0.511,0,1.019-0.195,1.408-0.583
+                                l13.138-13.137C85.484,70.789,85.484,69.53,84.707,68.752z" />
+                                </svg>
+                            </button>
+                            <button onclick="like()" id="like"
+                                class="rounded-full shadow-lg h-32 w-32 flex justify-center items-center text-green-400 outline-1 outline outline-slate-50 hover:-translate-y-1 duration-150 transition ease-in-out">
+                                <svg width="100" height="100" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <button
+                            class="w-full h-10 outline outline-1 outline-green-400 rounded-lg text-green-400 hover:bg-green-400 hover:text-white transition"
+                            onclick="openLiked(), likedGifsGrid()">
+                            Bekijk je Liked GIFs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="likedModal"
+                class="h-full w-full absolute justify-center items-center backdrop-brightness-50 hidden">
+                <div class="bg-white shadow-2xl rounded-2xl px-8 pt-2 pb-6 mb-4 h-3/4">
+                    <p class="flex flex-row-reverse w-full text-2xl font-bold font-mono z-50 cursor-pointer"
+                        onclick="closeLiked()">]
+                        <span class="text-red-500">x</span>
+                        [
+                    </p>
+                    <div id="likedGrid" class="h-full overflow-y-scroll grid gap-4 grid-cols-4 items-center">
+                        <div id="noLikes" class="text-4xl text-center text-gray-400 self-center">Je hebt nog geen Liked
+                            GIFs.</div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div id="infoModal"
+                class="h-full w-full absolute justify-center items-center backdrop-brightness-50 hidden">
+                <div
+                    class="bg-white shadow-2xl rounded-2xl px-8 py-8 mb-4 h-2/3 flex flex-col items-center justify-between">
+                    <p class="flex flex-row-reverse w-full text-2xl font-bold font-mono z-50 cursor-pointer"
+                        onclick="closeModal()">]
+                        <span class="text-red-500">x</span>
+                        [
+                    </p>
+                    <img id="infogif" src="200w.gif" alt="tinder for gifs"
+                        class="min-h-[150px] max-h-[250px] rounded-2xl shadow-md">
+                    <div class="text-xl flex flex-col">
+                        <p>Title: </p>
+                        <span id="titleSpan" class="font-bold text-2xl"></span><br>
+                        <p>Uploaded by: </p>
+                        <span id="userSpan" class="font-bold text-2xl"></span>
+                        <br><br>
+                        <a href="" target="_blank" id="visitLink"
+                            class="w-48 font-bold h-10 outline outline-6 flex justify-center items-center outline-green-400 rounded-lg text-green-400 hover:bg-green-400 hover:text-white transition self-center">
+                            Visit on GIPHY <i class="bi bi-box-arrow-up-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="infoModalLiked"
+                class="h-full w-full absolute justify-center items-center backdrop-brightness-50 hidden">
+                <div
+                    class="bg-white shadow-2xl rounded-2xl px-8 py-8 mb-4 h-2/3 flex flex-col items-center justify-between">
+                    <p class="flex flex-row-reverse w-full text-2xl font-bold font-mono z-50 cursor-pointer"
+                        onclick="closeLikedModal()">]
+                        <span class="text-red-500">x</span>
+                        [
+                    </p>
+                    <div id="likedInfoGif">
+                        <img id="likedInfogif" src="https://picsum.photos/400/300" alt="tinder for gifs"
+                            class="min-h-[150px] max-h-[250px] rounded-2xl shadow-md">
+                    </div>
+                    <div class="text-xl flex flex-col">
+                        <p>Title: </p>
+                        <span id="likedTitleSpan" class="font-bold text-2xl"></span><br>
+                        <p>Uploaded by: </p>
+                        <span id="likedUserSpan" class="font-bold text-2xl"></span>
+                        <br><br>
+                        <a href="" target="_blank" id="visitLink2"
+                            class="w-48 font-bold h-10 outline outline-6 flex justify-center items-center outline-green-400 rounded-lg text-green-400 hover:bg-green-400 hover:text-white transition self-center">
+                            Visit on GIPHY <i class="bi bi-box-arrow-up-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        var gradient = new Gradient()
+        gradient.initGradient('#gradient-canvas');
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
