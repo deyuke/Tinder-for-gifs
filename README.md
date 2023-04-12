@@ -1,4 +1,4 @@
-# Tinder for GIFs (React.JS)
+# Tinder for GIFs (React.js)
 This is the React version of the Tinder for GIFs app. To be able to install and run it, you need to have the latest version of [Node.js](https://nodejs.org/) installed on your computer. 
 
 ## How to open 
